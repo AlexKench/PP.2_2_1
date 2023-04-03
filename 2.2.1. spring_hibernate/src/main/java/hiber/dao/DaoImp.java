@@ -10,19 +10,19 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class DaoImp<T> implements Dao<T> {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
+    public void add(T t) {
+        sessionFactory.getCurrentSession().save(t);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> listUsers() {
+    public List<User> getListUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }

@@ -5,9 +5,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-public interface UserDao {
-   void add(User user);
-   List<User> listUsers();
+public interface Dao<T> {
+   void add(T t);
+   List<User> getListUsers();
 
    Session getSessionFactory();
 }

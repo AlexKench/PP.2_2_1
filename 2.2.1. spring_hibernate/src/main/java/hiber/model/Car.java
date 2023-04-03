@@ -1,27 +1,33 @@
 package hiber.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
-
+@Component
 @Entity
 @Table(name = "car")
+@Scope("prototype")
 public class Car {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-
     @Column(name = "model")
     private String model;
-
     @Column(name = "series")
     private int series;
 
 
-    public Car(){}
+    public Car() {
+    }
 
+    @Autowired
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
